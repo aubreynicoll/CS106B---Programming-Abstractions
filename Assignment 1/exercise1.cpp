@@ -1,6 +1,6 @@
 /* Prime Number Finder
  * 
- * This program allows input of a number, and will print true if that number is prime.
+ * This program allows input of a number, and will print true if that number is perfect (e.g. is the equal to the sum of its divisors).
  */
 
 #include <iostream>
@@ -8,31 +8,24 @@
 
 using namespace std;
 
-bool isPrime(int n);
-int getInt(void);
+bool isPerfect(int n);
 
 int main()
 {
-  cout << "Enter a number: ";
-  int n = getInt();
-  string result = isPrime(n) ? "true" : "false";
-  cout << result << endl;
-  return 0;
+  for (int i = 1; i <= 10000; i++)
+  {
+    if (isPerfect(i))
+      cout << i << endl;
+  }
 }
 
-bool isPrime(int n)
+bool isPerfect(int n)
 {
-  for (int i = 2; i <= n / 2; i++)
+  int sum = 0;
+  for (int i = 1; i <= n / 2; i++)
   {
     if (n % i == 0)
-      return false;
+      sum += i;
   }
-  return true;
-}
-
-int getInt()
-{
-  string s;
-  cin >> s;
-  return stoi(s);
+  return n == sum;
 }
