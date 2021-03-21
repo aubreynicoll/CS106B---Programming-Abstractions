@@ -18,6 +18,7 @@ using namespace std;
 /* Function prototypes */
 
 int Hash(string s, int maxCode);
+string getLine(void);
 
 /*
  * Function: Hash
