@@ -10,7 +10,7 @@ using namespace std;
 
 string getLine(void);
 string stringCensor1(string s1, string s2);
-string stringCensor2(string &s1, string s2);
+int stringCensor2(string &s1, string s2);
 
 int main()
 {
@@ -20,8 +20,8 @@ int main()
   cout << "Enter letters to remove: ";
   string censor = getLine();
 
-  string censoredString = stringCensor2(text, censor);
-  cout << censoredString << endl;
+  stringCensor2(text, censor);
+  cout << text << endl;
 
   return 0;
 }
@@ -44,7 +44,7 @@ string stringCensor1(string s1, string s2)
   return censoredString;
 }
 
-string stringCensor2(string &s1, string s2)
+int stringCensor2(string &s1, string s2)
 {
   for (int i = 0; i < s2.length(); i++)
   {
@@ -54,5 +54,5 @@ string stringCensor2(string &s1, string s2)
       s1.erase(index, 1);
     }
   }
-  return s1;
+  return 0;
 }
