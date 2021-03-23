@@ -43,19 +43,24 @@ int main()
     int votesA = nVoters * (.5 + pSpread / 2.0);
     int votesB = nVoters * (.5 - pSpread / 2.0);
 
-    int postErrorVotesA = 0, postErrorVotesB = 0;
+    int errorsA = 0, errorsB = 0;
 
     for (int vote = 0; vote < votesA; vote++)
     {
-      double(rand()) / (double(RAND_MAX) + 1.0) > pError ? postErrorVotesA++ : postErrorVotesB++;
+      if (double(rand()) / (double(RAND_MAX) + 1.0) < pError)
+        errorsA++;
     }
 
     for (int vote = 0; vote < votesB; vote++)
     {
-      double(rand()) / (double(RAND_MAX) + 1.0) > pError ? postErrorVotesB++ : postErrorVotesA++;
+      if (double(rand()) / (double(RAND_MAX) + 1.0) < pError)
+        errorsB++;
     }
 
-    if (postErrorVotesA < postErrorVotesB)
+    votesA = votesA - errorsA + errorsB;
+    votesB = votesB - errorsB + errorsA;
+
+    if (votesA < votesB)
       nInvalid++;
   }
 
