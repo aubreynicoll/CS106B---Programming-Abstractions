@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "map": "cpp",
+    "__tree": "cpp",
+    "istream": "cpp",
+    "iostream": "cpp"
+  }
+}
