@@ -48,10 +48,11 @@ bool isCorrectlyNested(string htmlString) {
     } else if (isTag) {
       stack.push(token);
     } else if (isClosingTag) {
-      if (stack.empty()) {
+      if (stack.empty() || stack.top() != token) {
         isCorrect = false;
-      } else if (stack.top() == token)
+      } else {
         stack.pop();
+      }
     }
   }
 
