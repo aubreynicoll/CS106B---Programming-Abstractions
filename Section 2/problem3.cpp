@@ -33,8 +33,9 @@ bool isCorrectlyNested(string htmlString) {
 
   stack<string> stack;
   bool isTag = false, isClosingTag = false;
+  bool isCorrect = true;
 
-  while (scanner.hasMoreTokens()) {
+  while (isCorrect && scanner.hasMoreTokens()) {
     string token = scanner.nextToken();
 
     if (token == "<") {
@@ -47,9 +48,13 @@ bool isCorrectlyNested(string htmlString) {
     } else if (isTag) {
       stack.push(token);
     } else if (isClosingTag) {
-      if (stack.top() == token) stack.pop();
+      if (stack.empty()) {
+        isCorrect = false;
+      } else if (stack.top() == token)
+        stack.pop();
     }
   }
 
-  return stack.empty();
+  if (!stack.empty()) isCorrect = false;
+  return isCorrect;
 }
