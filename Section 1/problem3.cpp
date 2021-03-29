@@ -1,32 +1,27 @@
 /* Problem 3: Vectors
  *
- * This program contains a function countLetters that takes a filename and 
+ * This program contains a function countLetters that takes a filename and
  * prints the number of occurances of each letter, case-insensitive.
  * */
 
-#include "../Headers/common.h"
 #include <vector>
+
+#include "../Library/common.h"
 
 void countLetters(string filename);
 
-int main()
-{
+int main() {
   countLetters("text.txt");
   return 0;
 }
 
-void countLetters(string filename)
-{
+void countLetters(string filename) {
   // open the file...
   ifstream in;
-  try
-  {
+  try {
     in.open(filename);
-    if (in.fail())
-      throw 1;
-  }
-  catch (int e)
-  {
+    if (in.fail()) throw 1;
+  } catch (int e) {
     cout << "error: " << e << endl;
     return;
   }
@@ -34,20 +29,16 @@ void countLetters(string filename)
   // initialize and loop through the file...
   vector<int> count(26, 0);
   string line;
-  while (getline(in, line))
-  {
+  while (getline(in, line)) {
     // read each char and increment indices appropriately...
-    for (int i = 0; i < line.length(); i++)
-    {
+    for (int i = 0; i < line.length(); i++) {
       char c = tolower(line[i]);
-      if (c >= 'a' && c <= 'z')
-        count[c - 'a']++;
+      if (c >= 'a' && c <= 'z') count[c - 'a']++;
     }
   }
 
   // print results...
-  for (int i = 0; i < count.size(); i++)
-  {
+  for (int i = 0; i < count.size(); i++) {
     cout << char('a' + i) << ": " << count[i] << endl;
   }
 
