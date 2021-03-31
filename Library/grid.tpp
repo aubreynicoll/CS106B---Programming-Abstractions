@@ -42,7 +42,7 @@ T Grid<T>::get(size_t row, size_t col) {
   if ((0 <= row && row < this->nRows) && (0 <= col && col < this->nCols)) {
     return this->grid[row][col];
   } else {
-    cout << "ERROR: out of bounds" << endl;
+    cout << "ERROR: row " << row << " " << col << " is out of bounds." << endl;
     exit(EXIT_FAILURE);
   }
 }
@@ -52,7 +52,7 @@ void Grid<T>::set(size_t row, size_t col, T value) {
   if ((0 <= row && row < this->nRows) && (0 <= col && col < this->nCols)) {
     this->grid[row][col] = value;
   } else {
-    cout << "ERROR: out of bounds" << endl;
+    cout << "ERROR: row " << row << " " << col << " is out of bounds." << endl;
     exit(EXIT_FAILURE);
   }
 }
