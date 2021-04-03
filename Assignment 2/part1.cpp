@@ -45,6 +45,7 @@ int main() {
   getUserInput(input, k);
   buildModel(input, model, k);
   generateText(model, k);
+
   return 0;
 }
 
@@ -94,12 +95,8 @@ void generateText(map<string, vector<char> > &model, int k) {
 
   for (map<string, vector<char> >::iterator it = model.begin();
        it != model.end(); it++) {
-    if (seed == "") {
+    if (seed == "" || model.at(seed).size() < it->second.size()) {
       seed = it->first;
-    } else {
-      if (model.at(seed).size() < it->second.size()) {
-        seed = it->first;
-      }
     }
   }
 
@@ -110,7 +107,7 @@ void generateText(map<string, vector<char> > &model, int k) {
       cout << c;
       seed.erase(0, 1);
       seed += c;
-    } catch (exception e) {
+    } catch (exception &error) {
       break;
     }
   }
