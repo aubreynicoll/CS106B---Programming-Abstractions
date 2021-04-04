@@ -10,7 +10,7 @@
 
 using namespace std;
 
-int getInt(string prompt) {
+int getInt(string prompt, string errorMessage) {
   int n;
 
   while (true) {
@@ -24,13 +24,13 @@ int getInt(string prompt) {
 
     if (!stream.fail()) break;
 
-    cerr << "Bad input." << endl;
+    if (errorMessage != "") cerr << errorMessage << endl;
   }
 
   return n;
 }
 
-double getDouble(string prompt) {
+double getDouble(string prompt, string errorMessage) {
   double d;
 
   while (true) {
@@ -44,7 +44,7 @@ double getDouble(string prompt) {
 
     if (!stream.fail()) break;
 
-    cerr << "Bad input." << endl;
+    if (errorMessage != "") cerr << errorMessage << endl;
   }
 
   return d;

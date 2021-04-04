@@ -14,13 +14,15 @@
 #include <string>
 
 /* Function: getInt
- * Usage: int n = getInt(prompt);
+ * Usage: int n = getInt(prompt, errorMessage);
  * */
-int getInt(std::string prompt = "Enter an integer: ");
+int getInt(std::string prompt = "Enter an integer: ",
+           std::string errorMessage = "");
 
 /* Function: getDouble
- * Usage: double d = getDouble(prompt);
+ * Usage: double d = getDouble(prompt, errorMessage);
  * */
-double getDouble(std::string prompt = "Enter a number: ");
+double getDouble(std::string prompt = "Enter a number: ",
+                 std::string errorMessage = "");
 
 #endif
