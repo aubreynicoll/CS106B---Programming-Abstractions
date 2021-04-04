@@ -1,8 +1,8 @@
-/* My IO
+/* myio.h
  *
  * This is an early attempt at writing my own reusable code.
  *
- * My IO contains functions for reading input from the user in a way that is
+ * myio contains functions for reading input from the user in a way that is
  * consistent and safe.
  * */
 

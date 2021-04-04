@@ -14,7 +14,7 @@ int main() {
   int n;
 
   do {
-    n = getInt();
+    n = getInt("Enter a positive integer: ");
   } while (n < 1);
 
   n = reverseInt(n);
