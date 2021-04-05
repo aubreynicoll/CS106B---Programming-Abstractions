@@ -6,8 +6,8 @@
  * consistent and safe.
  * */
 
-#ifndef __MY_IO__
-#define __MY_IO__
+#ifndef _myio_h
+#define _myio_h
 
 #include <iostream>
 #include <sstream>

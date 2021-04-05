@@ -21,7 +21,7 @@ int main() {
 
   for (int i = 0; i < N_RECTANGLES; i++) {
     double midpoint = i * width + width / 2;
-    double height = sqrt(RADIUS * RADIUS - midpoint * midpoint);
+    double height = sqrt(pow(RADIUS, 2) - pow(midpoint, 2));
 
     area += height * width;
   }

@@ -22,7 +22,7 @@ int getInt(string prompt, string errorMessage) {
     stream.str(s);
     stream >> n;
 
-    if (!stream.fail()) break;
+    if (!stream.fail() && stream.eof()) break;
 
     if (errorMessage != "") cerr << errorMessage << endl;
   }
@@ -42,7 +42,7 @@ double getDouble(string prompt, string errorMessage) {
     stream.str(s);
     stream >> d;
 
-    if (!stream.fail()) break;
+    if (!stream.fail() && stream.eof()) break;
 
     if (errorMessage != "") cerr << errorMessage << endl;
   }

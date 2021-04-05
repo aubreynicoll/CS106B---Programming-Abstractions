@@ -30,9 +30,9 @@ double getDouble(string prompt) {
     cout << prompt;
     getline(cin, s);
     stream.str(s);
-    stream >> d;
+    stream >> d >> ws;
 
-    if (!stream.fail()) break;
+    if (!stream.fail() && stream.eof()) break;
   }
 
   return d;
