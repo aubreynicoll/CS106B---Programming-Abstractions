@@ -1,6 +1,7 @@
 /* myio.cpp
  *
- * This is an early attempt at writing my own reusable code.
+ * This is an early attempt at messing around with the Stanford simpio code. For
+ * some reason, the Stanford code likes to loop endlessly on my machine.
  *
  * myio contains functions for reading input from the user in a way that is
  * consistent and safe.
