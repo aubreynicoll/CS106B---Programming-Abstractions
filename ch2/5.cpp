@@ -1,8 +1,8 @@
-/* Perfect Number Finder
+/* Exercise 2.5
  *
- * This program allows input of a number, and will print true if that number is
- * perfect (e.g. is the equal to the sum of its divisors).
- */
+ * This exercise asks the reader to write a predicate which returns true if the
+ * number is the sum of all its divisors, e.g. is a perfect number.
+ * */
 
 #include <iostream>
 #include <string>
