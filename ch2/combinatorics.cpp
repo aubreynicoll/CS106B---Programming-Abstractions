@@ -1,3 +1,9 @@
+/* combinatorics.cpp
+ *
+ * This small library offers basic combinatoric functions: Permutation and
+ * Combination.
+ * */
+
 #include "combinatorics.h"
 
 int P(int n, int k) {
