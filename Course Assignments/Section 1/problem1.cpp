@@ -1,6 +1,7 @@
 /* String Censor
  *
- * This program asks for two strings. It prints the first string with all the characters from the second string removed.
+ * This program asks for two strings. It prints the first string with all the
+ * characters from the second string removed.
  * */
 
 #include <iostream>
@@ -12,8 +13,7 @@ string getLine(void);
 string stringCensor1(string s1, string s2);
 int stringCensor2(string &s1, string s2);
 
-int main()
-{
+int main() {
   cout << "Enter a string: ";
   string text = getLine();
 
@@ -26,31 +26,24 @@ int main()
   return 0;
 }
 
-string getLine()
-{
+string getLine() {
   string s;
   getline(cin, s);
   return s;
 }
 
-string stringCensor1(string s1, string s2)
-{
+string stringCensor1(string s1, string s2) {
   string censoredString;
-  for (int i = 0; i < s1.length(); i++)
-  {
-    if (s2.find(s1[i]) == string::npos)
-      censoredString += s1[i];
+  for (int i = 0; i < s1.length(); i++) {
+    if (s2.find(s1[i]) == string::npos) censoredString += s1[i];
   }
   return censoredString;
 }
 
-int stringCensor2(string &s1, string s2)
-{
-  for (int i = 0; i < s2.length(); i++)
-  {
+int stringCensor2(string &s1, string s2) {
+  for (int i = 0; i < s2.length(); i++) {
     int index = 0;
-    while ((index = s1.find(s2[i], index)) != string::npos)
-    {
+    while ((index = s1.find(s2[i], index)) != string::npos) {
       s1.erase(index, 1);
     }
   }
