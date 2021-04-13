@@ -21,6 +21,8 @@ int main() {
     string s;
     getline(cin, s);
 
+    if (s == "") break;
+
     cout << s << " -> " << toOben(s) << endl;
   }
 
