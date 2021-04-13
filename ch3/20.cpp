@@ -12,8 +12,9 @@
 using namespace std;
 
 int findDNAMatch(string s1, string s2, int startIndex = 0);
-string invertSequence(string dna);
-char invertBase(char base);
+string getInverseSequence(string dna);
+char getInverseBase(char base);
+string getReverseSequence(string dna);
 
 int main() {
   cout << "This program matches one dna sequence to another." << endl;
@@ -43,17 +44,31 @@ int main() {
 int findDNAMatch(string s1, string s2, int startIndex) {
   if (s2.length() > s1.length()) return -1;
 
-  return s1.find(invertSequence(s2), startIndex);
+  string reverseSequence = getReverseSequence(s2);
+
+  int sequenceMatch = s1.find(getInverseSequence(s2), startIndex);
+  int reverseSequenceMatch =
+      s1.find(getInverseSequence(reverseSequence), startIndex);
+
+  if (sequenceMatch != string::npos && reverseSequenceMatch != string::npos) {
+    return (sequenceMatch < reverseSequenceMatch) ? sequenceMatch
+                                                  : reverseSequenceMatch;
+  } else if (sequenceMatch != string::npos ||
+             reverseSequenceMatch != string::npos) {
+    return sequenceMatch != string::npos ? sequenceMatch : reverseSequenceMatch;
+  } else {
+    return -1;
+  }
 }
 
-string invertSequence(string dna) {
+string getInverseSequence(string dna) {
   for (int i = 0; i < dna.length(); i++) {
-    dna[i] = invertBase(dna[i]);
+    dna[i] = getInverseBase(dna[i]);
   }
   return dna;
 }
 
-char invertBase(char base) {
+char getInverseBase(char base) {
   switch (base) {
     case 'A':
       return 'T';
@@ -66,4 +81,13 @@ char invertBase(char base) {
     default:
       return '?';
   }
+}
+
+string getReverseSequence(string dna) {
+  for (int i = 0, j = dna.length() - 1; i < j; i++, j--) {
+    char temp = dna[i];
+    dna[i] = dna[j];
+    dna[j] = temp;
+  }
+  return dna;
 }
