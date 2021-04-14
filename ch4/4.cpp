@@ -26,14 +26,11 @@ int main() {
     lines++;
     characters += line.length();
 
-    bool insideWord = false;
-    for (int i = 0; i < line.length(); i++) {
-      if (!insideWord && isalpha(line[i])) {
+    for (int i = 0, prev = ' '; i < line.length(); i++) {
+      if (isalpha(line[i]) && isblank(prev)) {
         words++;
-        insideWord = true;
-      } else if (isblank(line[i])) {
-        insideWord = false;
       }
+      prev = line[i];
     }
   }
 
