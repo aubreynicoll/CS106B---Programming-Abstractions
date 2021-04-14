@@ -1,9 +1,12 @@
 /* Exercise 3.20
  *
  * This program accepts two DNA sequences, and returns the first index at which
- * the second may attach to the first. DNA matches in the following pattern:
- * A <-> T
- * C <-> G
+ * the second sequence may attach to the first. DNA matches in the following
+ * pattern: A <-> T C <-> G
+ *
+ * The function attempts to pattern match by inverting the second sequence. It
+ * then looks for a match in the original sequence. It also checks for a reverse
+ * match. If no match is found, it returns -1.
  * */
 
 #include <iostream>
@@ -12,9 +15,9 @@
 using namespace std;
 
 int findDNAMatch(string s1, string s2, int startIndex = 0);
-string getInverseSequence(string dna);
-char getInverseBase(char base);
-string getReverseSequence(string dna);
+string getInvertedSequence(string dna);
+char getInvertedBase(char base);
+string getReversedSequence(string dna);
 
 int main() {
   cout << "This program matches one dna sequence to another." << endl;
@@ -44,31 +47,32 @@ int main() {
 int findDNAMatch(string s1, string s2, int startIndex) {
   if (s2.length() > s1.length()) return -1;
 
-  string reverseSequence = getReverseSequence(s2);
+  string reversedSequence = getReversedSequence(s2);
 
-  int sequenceMatch = s1.find(getInverseSequence(s2), startIndex);
-  int reverseSequenceMatch =
-      s1.find(getInverseSequence(reverseSequence), startIndex);
+  int sequenceMatch = s1.find(getInvertedSequence(s2), startIndex);
+  int reversedSequenceMatch =
+      s1.find(getInvertedSequence(reversedSequence), startIndex);
 
-  if (sequenceMatch != string::npos && reverseSequenceMatch != string::npos) {
-    return (sequenceMatch < reverseSequenceMatch) ? sequenceMatch
-                                                  : reverseSequenceMatch;
-  } else if (sequenceMatch != string::npos ||
-             reverseSequenceMatch != string::npos) {
-    return sequenceMatch != string::npos ? sequenceMatch : reverseSequenceMatch;
-  } else {
+  if (sequenceMatch == string::npos && reversedSequenceMatch == string::npos) {
     return -1;
+  } else if (sequenceMatch == string::npos ||
+             reversedSequenceMatch == string::npos) {
+    return sequenceMatch != string::npos ? sequenceMatch
+                                         : reversedSequenceMatch;
+  } else {
+    return (sequenceMatch < reversedSequenceMatch) ? sequenceMatch
+                                                   : reversedSequenceMatch;
   }
 }
 
-string getInverseSequence(string dna) {
+string getInvertedSequence(string dna) {
   for (int i = 0; i < dna.length(); i++) {
-    dna[i] = getInverseBase(dna[i]);
+    dna[i] = getInvertedBase(dna[i]);
   }
   return dna;
 }
 
-char getInverseBase(char base) {
+char getInvertedBase(char base) {
   switch (base) {
     case 'A':
       return 'T';
@@ -83,7 +87,7 @@ char getInverseBase(char base) {
   }
 }
 
-string getReverseSequence(string dna) {
+string getReversedSequence(string dna) {
   for (int i = 0, j = dna.length() - 1; i < j; i++, j--) {
     char temp = dna[i];
     dna[i] = dna[j];
